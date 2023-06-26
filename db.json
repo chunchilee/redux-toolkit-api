@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "name": "Doreen Lueilwitz",
+      "id": 1
+    },
+    {
+      "name": "Lynn Wyman",
+      "id": 2
+    },
+    {
+      "name": "Dr. Sadie Terry",
+      "id": 3
+    },
+    {
+      "name": "Lindsey Walker",
+      "id": 4
+    },
+    {
+      "name": "Patty Goodwin",
+      "id": 5
+    }
+  ],
+  "albums": [
+    {
+      "userId": 1,
+      "title": "Intelligent Soft Shirt",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "title": "Electronic Cotton Towels",
+      "id": 6
+    }
+  ],
+  "photos": []
+}
