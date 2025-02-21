@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# 📸  Redux Toolkit CRUD 應用
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌟 簡介
+本專案是一個基於 **React.js** 和 **Redux Toolkit** 的前端應用，使用 **json-server** 作為模擬後端，並整合 **faker.js** 產生假資料。透過 **axios** 和 **fetch** 發送 CRUD 請求，並使用 **createAsyncThunk** 和 **createApi** 來自動管理請求狀態、數據緩存及無效標記 (Tag system)。
 
-## Available Scripts
+## 🛠️ 技術棧
 
-In the project directory, you can run:
+- **狀態管理**：React-Redux (Provider)
+- **Redux Toolkit**：
+  - `configureStore`
+  - `createSlice` (extraReducers)
+  - `setupListeners`
+  - `middleware`
+  - `createAsyncThunk`
+  - `createApi` (reducerPath, baseQuery, endpoints, query, mutation, providesTags, invalidatesTags)
+- **伺服器模擬**：json-server
+- **CSS 框架**：Tailwind CSS
+- **假資料產生**：faker.js
+- **API 請求**：axios、fetch
 
-### `npm start`
+## 📦 安裝與運行
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. 安裝專案依賴：
+   ```sh
+   npm install
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. 啟動 json-server 模擬後端：
+   ```sh
+   npx run start:server
+   ```
 
-### `npm test`
+3. 啟動開發伺服器：
+   ```sh
+   npm run start
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎨 主要功能
 
-### `npm run build`
+- **使用者管理 (Users)**：
+  - 點擊 `addUser` 按鈕發送 `useThunk`，使用 `fetch` 手動發送請求。
+  - 透過 `extraReducers` 處理 `pending`、`fulfilled`、`rejected` 狀態。
+  - 點擊 User 可展開 Album 列表。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **相簿管理 (Albums)**：
+  - 點擊 `addAlbum` 按鈕，使用 `createApi` 自動處理請求狀態與數據緩存。
+  - 利用 **Tag system** 來標記過時數據。
+  - 點擊 Album 可展開 Photo 列表。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **照片管理 (Photos)**：
+  - 點擊 `addPhoto` 按鈕，使用 `createApi` 自動處理請求狀態與數據緩存。
+  - 利用 **Tag system** 來標記過時數據。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **刪除功能**：
+  - `users`、`albums`、`photos` 均可刪除個別項目。
 
-### `npm run eject`
+## 📂 JSON 伺服器結構
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```json
+{
+  "users": [
+    {
+      "name": "Andre Weber",
+      "id": 2
+    }
+  ],
+  "albums": [
+    {
+      "userId": 2,
+      "title": "Ergonomic Rubber Bike",
+      "id": 1
+    }
+  ],
+  "photos": [
+    {
+      "albumId": 1,
+      "url": "https://loremflickr.com/150/150/abstract?lock=88317",
+      "id": 1
+    }
+  ]
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![流程](https://github.com/user-attachments/assets/62c41a1f-fe2b-498d-ac99-6611a1845678)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
